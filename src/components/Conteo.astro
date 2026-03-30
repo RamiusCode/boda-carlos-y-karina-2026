@@ -1,0 +1,195 @@
+---
+// DireccionRegalos.astro
+---
+
+<section class="py-8 px-4 relative">
+    <div class="max-w-xl mx-auto text-center relative">
+        <!-- 🏛️ ICONO CON FLORES EN LOS BORDES -->
+        <div class="relative mb-4" id="icono-direccion-regalos">
+            <!-- 🌸 FLORES BORDE IZQUIERDO -->
+            <div
+                class="absolute left-0 top-1/2 -translate-y-1/2 w-10 pointer-events-none -ml-6 sm:-ml-7 md:-ml-8"
+                id="flores-regalos-izq"
+            >
+                <img
+                    src="/imagenes/FlorLateral.webp"
+                    alt="Flores decorativas izquierda"
+                    class="w-full h-auto object-contain"
+                />
+            </div>
+
+            <!-- TÍTULO EVENTO -->
+            <div class="mb-2" id="titulo-regalos">
+                <h2
+                    class="font-charm text-2xl md:text-3xl text-[#C9A961] font-bold tracking-wide"
+                >
+                    Recepción de Regalos
+                </h2>
+            </div>
+
+            <!-- ICONO CENTRAL -->
+            <div class="flex justify-center">
+                <img
+                    src="/imagenes/iglesia.png"
+                    alt="Icono recepción"
+                    class="w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain icono-dorado-regalos"
+                />
+            </div>
+
+            <!-- 🌸 FLORES BORDE DERECHO -->
+            <div
+                class="absolute right-0 top-1/2 -translate-y-1/2 w-10 pointer-events-none -mr-6 sm:-mr-7 md:-mr-8"
+                id="flores-regalos-der"
+            >
+                <img
+                    src="/imagenes/FlorLateral.webp"
+                    alt="Flores decorativas derecha"
+                    class="w-full h-auto object-contain scale-x-[-1]"
+                />
+            </div>
+        </div>
+
+        <!-- TÍTULO DIRECCIÓN -->
+        <div class="mb-2" id="titulo-dir-regalos">
+            <h2
+                class="font-charm text-2xl md:text-3xl text-[#C9A961] font-bold tracking-wide"
+            >
+                Dirección
+            </h2>
+        </div>
+
+        <!-- INFORMACIÓN DE UBICACIÓN -->
+        <div class="mb-2" id="info-regalos">
+            <!-- Nombre del lugar -->
+            <h3
+                class="font-charm text-xl md:text-2xl text-[#C9A961] font-bold mb-2"
+            >
+                Salón de Eventos "Primavera"
+            </h3>
+
+            <!-- Dirección -->
+            <p
+                class="font-charm text-lg md:text-xl text-[#626a54] leading-relaxed mb-3"
+            >
+                Ex. Tranca, Camino a Viacha, Z. Villa Dolores F,<br />
+                calle 135, N° 103
+            </p>
+
+            <!-- Hora -->
+            <p class="font-charm text-xl md:text-2xl text-[#C9A961] font-bold">
+                Hora: 19:00 hrs.
+            </p>
+        </div>
+
+        <!-- BOTÓN VER UBICACIÓN -->
+        <div class="flex justify-center" id="boton-regalos">
+            <a
+                href="https://maps.app.goo.gl/toDvTb6ReSQFXqsc6"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    src="/imagenes/VerUbicacion.webp"
+                    alt="Ver ubicación en el mapa"
+                    class="w-56 md:w-56 lg:w-64 h-auto object-contain cursor-pointer transition-transform duration-300 hover:scale-105"
+                />
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (typeof window !== "undefined") {
+        document.addEventListener("DOMContentLoaded", () => {
+            // Estado inicial
+            gsap.set("#icono-direccion-regalos", { opacity: 0, scale: 0.8 });
+            gsap.set("#titulo-regalos", { opacity: 0, scale: 0.9 });
+            gsap.set("#titulo-dir-regalos", { opacity: 0, scale: 0.9 });
+            gsap.set("#info-regalos", { opacity: 0, scale: 0.9 });
+            gsap.set("#boton-regalos", { opacity: 0, scale: 0.9 });
+            gsap.set("#flores-regalos-izq", { opacity: 0, x: -30 });
+            gsap.set("#flores-regalos-der", { opacity: 0, x: 30 });
+
+            ScrollTrigger.create({
+                trigger: "#icono-direccion-regalos",
+                start: "top 85%",
+                end: "top 20%",
+
+                onEnter: () => {
+                    const tl = gsap.timeline();
+
+                    tl.to(
+                        "#icono-direccion-regalos, #flores-regalos-izq, #flores-regalos-der, #titulo-regalos, #titulo-dir-regalos, #info-regalos, #boton-regalos",
+                        { opacity: 1, duration: 1, ease: "power2.out" },
+                    )
+                        .to(
+                            "#icono-direccion-regalos",
+                            { scale: 1, duration: 1, ease: "back.out(1.5)" },
+                            "<",
+                        )
+                        .to(
+                            "#flores-regalos-izq",
+                            { x: 0, duration: 1, ease: "power2.out" },
+                            "<",
+                        )
+                        .to(
+                            "#flores-regalos-der",
+                            { x: 0, duration: 1, ease: "power2.out" },
+                            "<",
+                        )
+                        .to(
+                            "#titulo-regalos, #titulo-dir-regalos, #info-regalos, #boton-regalos",
+                            { scale: 1, duration: 1, ease: "back.out(1.2)" },
+                            "<",
+                        );
+                },
+
+                onLeaveBack: () => {
+                    const tl = gsap.timeline();
+
+                    tl.to(
+                        "#icono-direccion-regalos, #flores-regalos-izq, #flores-regalos-der, #titulo-regalos, #titulo-dir-regalos, #info-regalos, #boton-regalos",
+                        { opacity: 0, duration: 0.5, ease: "power2.in" },
+                    )
+                        .to(
+                            "#icono-direccion-regalos",
+                            { scale: 0.8, duration: 0.5, ease: "power2.in" },
+                            "<",
+                        )
+                        .to(
+                            "#flores-regalos-izq",
+                            { x: -30, duration: 0.5, ease: "power2.in" },
+                            "<",
+                        )
+                        .to(
+                            "#flores-regalos-der",
+                            { x: 30, duration: 0.5, ease: "power2.in" },
+                            "<",
+                        )
+                        .to(
+                            "#titulo-regalos, #titulo-dir-regalos, #info-regalos, #boton-regalos",
+                            { scale: 0.9, duration: 0.5, ease: "power2.in" },
+                            "<",
+                        );
+                },
+            });
+
+            console.log("🎁🌸 Sección Recepción de Regalos inicializada");
+        });
+    }
+</script>
+
+<style>
+    .icono-dorado-regalos {
+        filter: brightness(0) saturate(100%) invert(73%) sepia(17%)
+            saturate(1089%) hue-rotate(358deg) brightness(92%) contrast(86%);
+        transition:
+            filter 0.3s ease,
+            transform 0.3s ease;
+    }
+</style>

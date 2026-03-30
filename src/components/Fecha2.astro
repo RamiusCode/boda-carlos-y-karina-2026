@@ -1,0 +1,200 @@
+---
+// FechaRegalos.astro
+---
+
+<!-- ═══════════════════════════════════════════════════════════ --><!-- 📅 COMPONENTE FECHA - RECEPCIÓN DE REGALOS                 --><!-- ═══════════════════════════════════════════════════════════ -->
+<section class="pb-2 pt-16 px-4">
+    <div class="max-w-2xl mx-auto text-center relative">
+        <!-- 🍃 HOJA IZQUIERDA -->
+        <div
+            class="absolute left-0 top-1/2 -translate-y-1/3 w-16 pointer-events-none -ml-6 sm:-ml-7 md:-ml-8"
+            id="hoja-regalos-fecha-izq"
+        >
+            <img
+                src="/imagenes/Hojas.webp"
+                alt="Hoja izquierda"
+                class="w-full h-auto object-contain transform -scale-x-100"
+            />
+        </div>
+
+        <!-- 🍃 HOJA DERECHA -->
+        <div
+            class="absolute right-0 top-1/2 -translate-y-1/3 w-16 pointer-events-none -mr-6 sm:-mr-7 md:-mr-8"
+            id="hoja-regalos-fecha-der"
+        >
+            <img
+                src="/imagenes/Hojas.webp"
+                alt="Hoja derecha"
+                class="w-full h-auto object-contain"
+            />
+        </div>
+
+        <!-- 🌸 Flores centrales arriba -->
+        <div class="flex justify-center mb-6" id="flores-regalos-fecha">
+            <img
+                src="/imagenes/Separadores.webp"
+                alt="Flores decorativas"
+                class="w-40 md:w-48 lg:w-56 h-auto"
+            />
+        </div>
+
+        <!-- 💍 Texto -->
+        <div class="mb-6" id="texto-regalos-fecha-container">
+            <div class="flex items-center justify-center px-4">
+                <div id="texto-regalos-fecha" class="flex-shrink-0">
+                    <p
+                        class="font-great-vibes text-4xl sm:text-3xl md:text-4xl text-[#C9A961] leading-relaxed text-center"
+                    >
+                        Acompáñanos al<br />conteo de regalos
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📅 Fecha -->
+        <div class="relative max-w-md mx-auto" id="fecha-regalos-evento">
+            <div class="flex items-center justify-center gap-4 md:gap-6">
+                <!-- DOMINGO con líneas -->
+                <div class="flex flex-col items-center w-24 md:w-28">
+                    <div class="w-full h-px bg-[#C9A961] mb-2"></div>
+                    <span
+                        class="font-charm text-lg md:text-xl text-[#626a54] uppercase tracking-wider font-bold text-center"
+                    >
+                        DOMINGO
+                    </span>
+                    <div class="w-full h-px bg-[#C9A961] mt-2"></div>
+                </div>
+
+                <!-- Número 12 -->
+                <div
+                    class="flex items-center justify-center min-w-[80px] md:min-w-[100px]"
+                >
+                    <span
+                        class="font-charm text-7xl md:text-8xl text-[#C9A961] font-bold"
+                    >
+                        12
+                    </span>
+                </div>
+
+                <!-- ABRIL con líneas -->
+                <div class="flex flex-col items-center w-24 md:w-28">
+                    <div class="w-full h-px bg-[#C9A961] mb-2"></div>
+                    <span
+                        class="font-charm text-lg md:text-xl text-[#626a54] uppercase tracking-wider font-bold text-center"
+                    >
+                        ABRIL
+                    </span>
+                    <div class="w-full h-px bg-[#C9A961] mt-2"></div>
+                </div>
+            </div>
+
+            <!-- Año 2026 -->
+            <div class="mt-4 flex justify-center" id="anio-regalos-evento">
+                <p
+                    class="font-charm text-3xl md:text-4xl text-[#626a54] font-bold"
+                >
+                    2026
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (typeof window !== "undefined") {
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("📅 Iniciando animaciones de fecha regalos...");
+
+            gsap.set("#flores-regalos-fecha", { opacity: 0, scale: 0.8 });
+            gsap.set("#hoja-regalos-fecha-izq", { opacity: 0, x: -30 });
+            gsap.set("#hoja-regalos-fecha-der", { opacity: 0, x: 30 });
+            gsap.set("#texto-regalos-fecha", { opacity: 0, scale: 0.9 });
+            gsap.set("#fecha-regalos-evento", { opacity: 0, scale: 0.9 });
+            gsap.set("#anio-regalos-evento", { opacity: 0, scale: 0.9 });
+
+            ScrollTrigger.create({
+                trigger: "#flores-regalos-fecha",
+                start: "top 85%",
+                end: "top 20%",
+
+                onEnter: () => {
+                    const tl = gsap.timeline();
+
+                    tl.to(
+                        "#flores-regalos-fecha, #hoja-regalos-fecha-izq, #hoja-regalos-fecha-der, #texto-regalos-fecha, #fecha-regalos-evento, #anio-regalos-evento",
+                        { opacity: 1, duration: 1, ease: "power2.out" },
+                    )
+                        .to(
+                            "#flores-regalos-fecha",
+                            { scale: 1, duration: 1, ease: "back.out(1.4)" },
+                            "<",
+                        )
+                        .to(
+                            "#hoja-regalos-fecha-izq",
+                            { x: 0, duration: 1, ease: "power2.out" },
+                            "<",
+                        )
+                        .to(
+                            "#hoja-regalos-fecha-der",
+                            { x: 0, duration: 1, ease: "power2.out" },
+                            "<",
+                        )
+                        .to(
+                            "#texto-regalos-fecha, #fecha-regalos-evento, #anio-regalos-evento",
+                            { scale: 1, duration: 1, ease: "back.out(1.2)" },
+                            "<",
+                        );
+                },
+
+                onLeaveBack: () => {
+                    const tl = gsap.timeline();
+
+                    tl.to(
+                        "#flores-regalos-fecha, #hoja-regalos-fecha-izq, #hoja-regalos-fecha-der, #texto-regalos-fecha, #fecha-regalos-evento, #anio-regalos-evento",
+                        { opacity: 0, duration: 0.5, ease: "power2.in" },
+                    )
+                        .to(
+                            "#flores-regalos-fecha",
+                            { scale: 0.8, duration: 0.5, ease: "power2.in" },
+                            "<",
+                        )
+                        .to(
+                            "#hoja-regalos-fecha-izq",
+                            { x: -30, duration: 0.5, ease: "power2.in" },
+                            "<",
+                        )
+                        .to(
+                            "#hoja-regalos-fecha-der",
+                            { x: 30, duration: 0.5, ease: "power2.in" },
+                            "<",
+                        )
+                        .to(
+                            "#texto-regalos-fecha, #fecha-regalos-evento, #anio-regalos-evento",
+                            { scale: 0.9, duration: 0.5, ease: "power2.in" },
+                            "<",
+                        );
+                },
+            });
+
+            console.log("✨ Animaciones fecha regalos listas!");
+        });
+    }
+</script>
+
+<style>
+    #fecha-regalos-evento {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    @media (max-width: 640px) {
+        section {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+</style>
